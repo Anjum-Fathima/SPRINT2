@@ -21,27 +21,27 @@ public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long userId;
-    
+
 	// userName of the user
 	@NotBlank(message = "userName is required")
 	@Column(updatable = false, unique = true)
 	private String userName;
 
-	//userPassword of the user
+	// userPassword of the user
 	@NotBlank(message = "userPassword is required")
 	@Size(min = 8, max = 15, message = "password size should between 8 to 15 characters")
 	private String userPassword;
 
-	//Date of user registration
+	// Date of user registration
 	@JsonFormat(pattern = "yyyy-MM-dd")
 	private Date created_On;
 
-	//Date of updation of user data
+	// Date of updation of user data
 	@JsonFormat(pattern = "yyyy-MM-dd")
 	private Date updated_On;
 
 	private String created_By = "Admin";
-    
+
 	// getters and setters
 	public Long getUserId() {
 		return userId;
@@ -82,14 +82,14 @@ public class User {
 	public void setCreated_By(String created_By) {
 		this.created_By = created_By;
 	}
-    
-	//Automatic generation of created_On
+
+	// Automatic generation of created_On
 	@PrePersist
 	public void onCreate() {
 		this.created_On = new Date();
 	}
 
-	//Automatic generation of updated_On
+	// Automatic generation of updated_On
 	@PreUpdate
 	public void onUpdate() {
 		this.updated_On = new Date();
